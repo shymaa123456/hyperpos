@@ -9,7 +9,7 @@ from mysql.connector import Error
 from datetime import datetime
 import mysql.connector
 
-class CL_user(QtWidgets.QDialog):
+class CL_branch(QtWidgets.QDialog):
     
 
     def __init__(self):

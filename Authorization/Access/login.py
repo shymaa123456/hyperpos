@@ -23,6 +23,7 @@ import mysql.connector
 from Role import CL_role
 from form import CL_form
 from privilage import CL_privilage
+from user_module import CL_userModule
 
 
 class CL_login(QtWidgets.QDialog):
@@ -62,8 +63,8 @@ class CL_login(QtWidgets.QDialog):
         if cursor.rowcount >0:
             
             #save the login in the table 
-            
-            self.switch_window.emit() 
+            CL_userModule.user_name=username
+            self.switch_window.emit()
            
         else:
             QtWidgets.QMessageBox.warning(self, "Error", "Incorrect Username and Password")

@@ -6,18 +6,14 @@ from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets, uic ,QtCore
 from PyQt5.QtGui import QPixmap
 from mysql.connector import Error
-
 import mysql.connector
-
 from form import CL_form
 from user import CL_user
 from Role import CL_role
 from privilage import CL_privilage
-
-
 from formItem import CL_formItem
 from privilageItem import CL_privilageItem
-
+from branch import CL_branch
 
 
 class CL_main(QtWidgets.QMainWindow):
@@ -47,6 +43,7 @@ class CL_main(QtWidgets.QMainWindow):
         self.QA_Modify_Form_Item.triggered.connect(self.FN_modify_form_item)
         self.QA_Display_Items.triggered.connect(self.FN_display_item)
         #self.actiontest.triggered.connect(self.FN_test)
+
     def FN_display_item(self):
         self.window_two = CL_formItem()
         self.window_two.FN_DISPLAY_ITEMS()

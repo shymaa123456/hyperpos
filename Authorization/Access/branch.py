@@ -9,19 +9,21 @@ from mysql.connector import Error
 from datetime import datetime
 import mysql.connector
 
-class CL_user(QtWidgets.QDialog):
+class CL_branch(QtWidgets.QDialog):
     
 
     def __init__(self):
-        super(CL_user, self).__init__()
+        super(CL_branch, self).__init__()
         loadUi('../Presentation/Branch.ui', self)
-        self.btn_create_branch.clicked.connect(self.fn_create_branch)
-        self.cmb_branch_id.addItems(["1","2","3"])
-        self.cmb_branch_status.addItems(["0","1"])
+        self.BTN_createBranch.clicked.connect(self.FN_createBranch)
+        self.CMB_branchId.addItems(["1","2","3"])
+        self.CMB_branchCompany.addItems(["zayed","asher","sphinx"])
+        self.CMB_branchStatus.addItems(["0","1"])
                
     def fn_create_branch(self):
          self.branchId = self.CMB_branchId.currentText()
          self.branchCompany = self.QLE_branchCompany.text()
+         self.branchCompany = self.CMB_branchCompany.currentText()
          self.branchDescA = self.QLE_branchDescA.text()
          self.branchDescE = self.QLE_branchDescE.text()
          self.branchAddress = self.QLE_branchAddress.text()
@@ -41,16 +43,24 @@ class CL_user(QtWidgets.QDialog):
                                           ,user='root',password='password',port='3306')
          mycursor = connection.cursor()
          #get max userid
-         mycursor.execute("SELECT max(USER_ID) FROM SYS_USER")
+         #mycursor.execute("SELECT max(USER_ID) FROM SYS_USER")
+         #myresult = mycursor.fetchone()
+         #get max branch i
+         mycursor.execute("SELECT max(CAST(BRANCH_NO as SIGNED)) FROM BRANCH")
          myresult = mycursor.fetchone()
+         if len(myresult) == 0:
+            self.branchId=1
 
-         self.id=int(myresult[0])+1
-         
+         else:
+            self.branchId=myresult[0]+1
+
+         #self.id=int(myresult[0])+1
+
          creationDate=str(datetime.today().strftime('%Y-%m-%d-%H:%M-%S'))
-         
+
          print(creationDate)
-         
-         sql = "INSERT INTO SYS_USER (BRANCH_NO, BRANCH_COMPANY, BRANCH_DESC_A, BRANCH_DESC_E, BRANCH_ADDRESS, BRANCH_CITY, BRANCH_TEL1, BRANCH_TEL2, BRANCH_FAX, BRANCH_EMAIL,BRANCH_NOTES, BRANCH_CHANGED_ON,BRANCH_CURRENCY, BRANCH_STATUS)         VALUES ( %s, %s, %s, %s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+
+         sql = "INSERT INTO BRANCH (BRANCH_NO, BRANCH_COMPANY, BRANCH_DESC_A, BRANCH_DESC_E, BRANCH_ADDRESS, BRANCH_CITY, BRANCH_TEL1, BRANCH_TEL2, BRANCH_FAX, BRANCH_EMAIL,BRANCH_NOTES, BRANCH_CHANGED_ON,BRANCH_CURRENCY, BRANCH_STATUS)         VALUES ( %s, %s, %s, %s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
          
          #sql = "INSERT INTO SYS_USER (USER_ID,USER_NAME) VALUES (%s, %s)"
          val = (self.branchId, self.branchCompany,self.name,self.password,self.fullName,self.hrId,creationDate,'','','',self.status,self.userType)
@@ -63,4 +73,4 @@ class CL_user(QtWidgets.QDialog):
          
             
          print(mycursor.rowcount, "record inserted.")
- 
+         self.close()

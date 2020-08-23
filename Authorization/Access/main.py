@@ -42,8 +42,12 @@ class CL_main(QtWidgets.QMainWindow):
         self.QA_Create_Form_Item.triggered.connect(self.FN_create_form_item)
         self.QA_Modify_Form_Item.triggered.connect(self.FN_modify_form_item)
         self.QA_Display_Items.triggered.connect(self.FN_display_item)
+        self.QA_Branch.triggered.connect( self.FN_create_branch )
         #self.actiontest.triggered.connect(self.FN_test)
-
+    def FN_create_branch(self):
+        self.window_two = CL_branch()
+        #self.window_two.fn_create_branch()
+        self.window_two.show()
     def FN_display_item(self):
         self.window_two = CL_formItem()
         self.window_two.FN_DISPLAY_ITEMS()

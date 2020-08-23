@@ -15,15 +15,15 @@ class CL_branch(QtWidgets.QDialog):
     def __init__(self):
         super(CL_branch, self).__init__()
         loadUi('../Presentation/Branch.ui', self)
-        self.BTN_createBranch.clicked.connect(self.FN_createBranch)
+        self.btn_create_branch.clicked.connect(self.fn_create_branch)
         self.CMB_branchId.addItems(["1","2","3"])
-        self.CMB_branchCompany.addItems(["zayed","asher","sphinx"])
+        #self.CMB_branchCompany.addItems(["zayed","asher","sphinx"])
         self.CMB_branchStatus.addItems(["0","1"])
                
     def fn_create_branch(self):
          self.branchId = self.CMB_branchId.currentText()
          self.branchCompany = self.QLE_branchCompany.text()
-         self.branchCompany = self.CMB_branchCompany.currentText()
+         self.branchCompany = self.QLE_branchCompany.text()
          self.branchDescA = self.QLE_branchDescA.text()
          self.branchDescE = self.QLE_branchDescE.text()
          self.branchAddress = self.QLE_branchAddress.text()

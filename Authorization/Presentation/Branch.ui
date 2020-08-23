@@ -48,8 +48,8 @@
   <widget class="QPushButton" name="btn_create_branch">
    <property name="geometry">
     <rect>
-     <x>280</x>
-     <y>740</y>
+     <x>620</x>
+     <y>510</y>
      <width>101</width>
      <height>25</height>
     </rect>
@@ -136,7 +136,7 @@
     <string>Branch ID</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="cmb_branch_id">
+  <widget class="QComboBox" name="CMB_branchId">
    <property name="geometry">
     <rect>
      <x>360</x>
@@ -398,7 +398,7 @@
     <string>Branch Status</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="cmb_branch_status">
+  <widget class="QComboBox" name="CMB_branchStatus">
    <property name="geometry">
     <rect>
      <x>360</x>

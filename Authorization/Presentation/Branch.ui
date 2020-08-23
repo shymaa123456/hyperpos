@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Branch</string>
   </property>
-  <widget class="QLineEdit" name="qle_branch_company">
+  <widget class="QLineEdit" name="QLE_branchCompany">
    <property name="geometry">
     <rect>
      <x>360</x>

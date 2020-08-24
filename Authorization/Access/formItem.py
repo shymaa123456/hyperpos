@@ -66,13 +66,12 @@ class CL_formItem(QtWidgets.QDialog):
 
     def FN_GET_FORMS(self):
         self.CMB_formName.clear()
-        self.item=  self.LB_formItemID.text()
+        #self.item=  self.LB_formItemID.text()
         connection = mysql.connector.connect(host='localhost', database='PosDB'
                                              , user='root', password='password', port='3306')
         mycursor = connection.cursor()
 
-        mycursor.execute("SELECT FORM_DESC FROM SYS_FORM as f  inner join SYS_FORM_ITEM as i on f.FORM_ID=i.FORM_ID"
-                         " WHERE i.ITEM_ID = '"+self.item+"' order by f.FORM_ID asc")
+        mycursor.execute("SELECT FORM_DESC FROM SYS_FORM  order by FORM_ID asc")
         records = mycursor.fetchall()
         for row in records:
             self.CMB_formName.addItems([row[0]])
@@ -113,7 +112,7 @@ class CL_formItem(QtWidgets.QDialog):
 
     def FN_CREATE_FORM_ITEM(self):
         self.desc = self.LE_desc.text()
-        self.form = self.CMB_formId.currentText()
+        self.form = self.LB_formID.text()
 
 
         self.status = self.CMB_formItemStatus.currentText()
